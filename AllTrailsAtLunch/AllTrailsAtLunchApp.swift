@@ -12,9 +12,9 @@ struct AllTrailsAtLunchApp: App {
   var body: some Scene {
     WindowGroup {
       ContentView(store: .init(
-        initialState: .mock,
+        initialState: .live,
         reducer: ContentStore.reducer,
-        environment: .mock
+        environment: .live
       )
       )
     }

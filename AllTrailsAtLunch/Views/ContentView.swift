@@ -26,6 +26,8 @@ struct ContentView: View {
         case .list:
           ListView(store: store)
         }
+      }.onAppear{
+        viewStore.send(.onAppStart)
       }
     }
   }

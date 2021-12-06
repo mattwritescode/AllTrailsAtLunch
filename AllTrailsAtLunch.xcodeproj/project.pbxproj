@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E90B9789275D61EC0070782A /* GooglePlacesNearbySearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90B9788275D61EC0070782A /* GooglePlacesNearbySearchManager.swift */; };
+		E90B978D275D73930070782A /* GooglePlacesNearbySearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90B978C275D73930070782A /* GooglePlacesNearbySearchModel.swift */; };
+		E90B978F275D79FA0070782A /* Restaurant+Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90B978E275D79FA0070782A /* Restaurant+Results.swift */; };
+		E90B9791275D869E0070782A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90B9790275D869E0070782A /* LocationManager.swift */; };
 		E9FCDC0F275A88D000E42B82 /* AllTrailsAtLunchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FCDC0E275A88D000E42B82 /* AllTrailsAtLunchApp.swift */; };
 		E9FCDC11275A88D000E42B82 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FCDC10275A88D000E42B82 /* ContentView.swift */; };
 		E9FCDC13275A88D300E42B82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9FCDC12275A88D300E42B82 /* Assets.xcassets */; };
@@ -45,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E90B9788275D61EC0070782A /* GooglePlacesNearbySearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesNearbySearchManager.swift; sourceTree = "<group>"; };
+		E90B978C275D73930070782A /* GooglePlacesNearbySearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesNearbySearchModel.swift; sourceTree = "<group>"; };
+		E90B978E275D79FA0070782A /* Restaurant+Results.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Restaurant+Results.swift"; sourceTree = "<group>"; };
+		E90B9790275D869E0070782A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E9FCDC0B275A88D000E42B82 /* AllTrailsAtLunch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllTrailsAtLunch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9FCDC0E275A88D000E42B82 /* AllTrailsAtLunchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTrailsAtLunchApp.swift; sourceTree = "<group>"; };
 		E9FCDC10275A88D000E42B82 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,6 +101,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E90B9787275D60190070782A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E9FCDC48275A9EFA00E42B82 /* APIClient.swift */,
+				E90B9788275D61EC0070782A /* GooglePlacesNearbySearchManager.swift */,
+				E90B978C275D73930070782A /* GooglePlacesNearbySearchModel.swift */,
+				E90B978E275D79FA0070782A /* Restaurant+Results.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E90B9792275D86A40070782A /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				E90B9790275D869E0070782A /* LocationManager.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
 		E9FCDC02275A88D000E42B82 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +143,7 @@
 		E9FCDC0D275A88D000E42B82 /* AllTrailsAtLunch */ = {
 			isa = PBXGroup;
 			children = (
+				E90B9787275D60190070782A /* Network */,
 				E9FCDC4A275AA82300E42B82 /* CommonUI */,
 				E9FCDC0E275A88D000E42B82 /* AllTrailsAtLunchApp.swift */,
 				E9FCDC45275A9E6600E42B82 /* Views */,
@@ -124,7 +152,7 @@
 				E9FCDC3E275A93D700E42B82 /* ContentStore.swift */,
 				E9FCDC40275A97F500E42B82 /* Restaurant.swift */,
 				E9FCDC46275A9E7F00E42B82 /* Environment.swift */,
-				E9FCDC48275A9EFA00E42B82 /* APIClient.swift */,
+				E90B9792275D86A40070782A /* Location */,
 			);
 			path = AllTrailsAtLunch;
 			sourceTree = "<group>";
@@ -315,13 +343,17 @@
 				E9FCDC11275A88D000E42B82 /* ContentView.swift in Sources */,
 				E9FCDC3B275A891500E42B82 /* MapView.swift in Sources */,
 				E9FCDC3F275A93D700E42B82 /* ContentStore.swift in Sources */,
+				E90B9791275D869E0070782A /* LocationManager.swift in Sources */,
 				E9FCDC4C275AA82F00E42B82 /* SearchBar.swift in Sources */,
 				E9FCDC47275A9E7F00E42B82 /* Environment.swift in Sources */,
 				E9FCDC4E275BE8D800E42B82 /* BoxStyle.swift in Sources */,
 				E9FCDC0F275A88D000E42B82 /* AllTrailsAtLunchApp.swift in Sources */,
 				E9FCDC41275A97F500E42B82 /* Restaurant.swift in Sources */,
+				E90B978F275D79FA0070782A /* Restaurant+Results.swift in Sources */,
 				E9FCDC50275BEC3D00E42B82 /* RestaurantCell.swift in Sources */,
+				E90B9789275D61EC0070782A /* GooglePlacesNearbySearchManager.swift in Sources */,
 				E9FCDC39275A890600E42B82 /* ListView.swift in Sources */,
+				E90B978D275D73930070782A /* GooglePlacesNearbySearchModel.swift in Sources */,
 				E9FCDC49275A9EFA00E42B82 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +518,7 @@
 				DEVELOPMENT_TEAM = 8U89C8SA22;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GIVE US YOUR LOCATION! WE DEMAND THIS!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -516,6 +549,7 @@
 				DEVELOPMENT_TEAM = 8U89C8SA22;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GIVE US YOUR LOCATION! WE DEMAND THIS!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

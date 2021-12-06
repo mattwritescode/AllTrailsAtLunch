@@ -28,10 +28,9 @@ struct SearchBar: View {
       }
       .overlay(
         HStack {
-          Image(systemName: "SearchIcon")
-            .foregroundColor(.green)
-            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-            .padding(.leading, 8)
+          Image("SearchIcon")
+            .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+            .padding(.trailing, 16)
 
           if viewStore.state.searchText.count > 0 {
             Button(action: {

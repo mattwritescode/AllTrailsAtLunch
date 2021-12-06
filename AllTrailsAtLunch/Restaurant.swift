@@ -7,17 +7,17 @@
 
 import Foundation
 
-struct Restaurant: Equatable, Identifiable {
-  let id: UUID
-  var name: String
-  var rating: Rating
-  var numReviews: Int
-  var priceIndex: PriceIndex
-  var supportingText: String
-  var isFavorite: Bool
+public struct Restaurant: Equatable, Identifiable {
+  public let id: UUID
+  public var name: String
+  public var rating: Rating
+  public var numReviews: Int
+  public var priceIndex: PriceIndex
+  public var supportingText: String
+  public var isFavorite: Bool
 }
 
-enum Rating: Int {
+public enum Rating: Int {
   case one = 1
   case two = 2
   case three = 3
@@ -25,7 +25,7 @@ enum Rating: Int {
   case five = 5
 }
 
-enum PriceIndex: String {
+public enum PriceIndex: String {
   case cheap = "$"
   case mid = "$$"
   case expensive = "$$$"
