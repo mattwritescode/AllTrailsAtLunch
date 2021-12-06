@@ -8,12 +8,11 @@
 import Foundation
 extension Restaurant {
   public init(result: Result) {
-    self.id = UUID()
+    self.id = UUID(uuidString: result.placeID) ?? UUID()
     self.name = result.name
     self.rating = Rating(result.rating)
     self.numReviews = result.userRatingsTotal
     self.priceIndex = PriceIndex(result.priceLevel)
-    //TODO: find better supporting text, this seems to be the other human readable bit besides the name
     self.supportingText = result.vicinity
     self.isFavorite = false
   }

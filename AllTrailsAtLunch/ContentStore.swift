@@ -49,7 +49,11 @@ public enum ContentStore {
             return state.locManager.$lastLocation.sink(
               receiveValue: { location in
                 if state.locManager.latitude != "0.0" {
+                  
+                  // update search after location found for the first time
                   subscriber.send(Action.requestFromGoogle)
+
+                  // stop listening after the first time.
                   subscriber.send(completion: .finished)
                 }
               })
@@ -65,14 +69,12 @@ public enum ContentStore {
         return .none
 
       case .didTypeSearch(let searchText):
-        // TODO: stretch goal: debounce 2 seconds
         state.searchText = searchText
         return  Effect(value: .requestFromGoogle)
-          .throttle(for: 2, scheduler: env.mainQueue, latest: true)
+          .throttle(for: 2.0, scheduler: env.mainQueue, latest: true)
           .eraseToEffect()
 
       case .requestFromGoogle:
-        print("MATT",state.searchText, state.locManager.latitude, state.locManager.longitude)
         return env.apiClient.restaurants(
           searchText: state.searchText,
           latitude: state.locManager.latitude,
@@ -87,7 +89,6 @@ public enum ContentStore {
         case .success(let results):
 
           // Convert to Restaurants for display to user
-          
           var restaurants: IdentifiedArrayOf<Restaurant> = []
           for result in results {
             restaurants.append(Restaurant(result: result))
@@ -104,8 +105,10 @@ public enum ContentStore {
         return .none
       }
     }
-  ).debug()
-
+  )
+  #if DEBUG
+    .debug()
+  #endif
 }
 
 enum ViewType {

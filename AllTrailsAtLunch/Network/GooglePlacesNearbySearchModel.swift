@@ -33,7 +33,7 @@ public struct Result: Codable {
   let name: String
   let openingHours: OpeningHours?
   let photos: [Photo]?
-  let placeID: String?
+  let placeID: String
   let plusCode: PlusCode?
   let priceLevel: Int?
   let rating: Double

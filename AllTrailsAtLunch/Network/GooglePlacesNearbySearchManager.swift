@@ -43,7 +43,6 @@ struct GooglePlacesNearbySearchManager {
 
 
   public func fetch() -> AnyPublisher<[Result], Error> {
-    print("MATT",request)
     return URLSession.DataTaskPublisher(request: request, session: .shared)
       .tryMap() { element -> Data in
         guard let httpResponse = element.response as? HTTPURLResponse,
