@@ -24,7 +24,7 @@ public struct APIClient {
       latitude: latitude,
       longitude: longitude
     )
-    return search.fetch()
+    return search.fetch() 
 
   }
 

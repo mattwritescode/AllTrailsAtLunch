@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import Combine
 import SwiftUI
 import CoreLocation
 
@@ -17,8 +18,10 @@ public enum ContentStore {
     var searchText: String
     var locManager = LocationManager()
 
+    var cancellables = Set<AnyCancellable>()
+
     public static let live = ContentStore.State(
-      places: [],
+      places: IdentifiedArrayOf<Restaurant>(),
       currentView: .list,
       searchText: ""
     )
@@ -39,11 +42,20 @@ public enum ContentStore {
     Reducer { state, action, env in
       switch action {
       case .onAppStart:
+        // if we get location authorization -> trigger google search
+        return .merge(
+          Effect(value: Action.requestFromGoogle),
+          .run { [state] subscriber in
+            return state.locManager.$lastLocation.sink(
+              receiveValue: { location in
+                if state.locManager.latitude != "0.0" {
+                  subscriber.send(Action.requestFromGoogle)
+                  subscriber.send(completion: .finished)
+                }
+              })
+          }
+        )
 
-        // get location
-        // trigger google search
-
-        return Effect(value: .requestFromGoogle)
       case .didTapListMapButton:
         if state.currentView == .list {
           state.currentView = .map
@@ -53,10 +65,11 @@ public enum ContentStore {
         return .none
 
       case .didTypeSearch(let searchText):
-        // TODO: debounce 2 seconds
-        // network call to google places
+        // TODO: stretch goal: debounce 2 seconds
         state.searchText = searchText
-        return Effect(value: .requestFromGoogle)
+        return  Effect(value: .requestFromGoogle)
+          .throttle(for: 2, scheduler: env.mainQueue, latest: true)
+          .eraseToEffect()
 
       case .requestFromGoogle:
         print("MATT",state.searchText, state.locManager.latitude, state.locManager.longitude)
@@ -75,9 +88,9 @@ public enum ContentStore {
 
           // Convert to Restaurants for display to user
           
-          var restaurants: [Restaurant] = []
+          var restaurants: IdentifiedArrayOf<Restaurant> = []
           for result in results {
-            state.places.append(Restaurant(result: result))
+            restaurants.append(Restaurant(result: result))
           }
           state.places = IdentifiedArrayOf<Restaurant>(uniqueElements: restaurants)
 
