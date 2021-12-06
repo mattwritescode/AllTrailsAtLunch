@@ -13,8 +13,8 @@ struct ListView: View {
 
   var body: some View {
     WithViewStore(store) { viewStore in
-      List(viewStore.places.indices) { index in
-        RestaurantCell(index: index, store: store)
+      List(viewStore.places) { place in
+        RestaurantCell(id: place.id, store: store)
           .listRowSeparator(.hidden)
           .listRowBackground(Color(.systemGray6))
       }.frame(alignment: .center)

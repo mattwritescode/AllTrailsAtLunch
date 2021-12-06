@@ -12,7 +12,7 @@ import CoreLocation
 public enum ContentStore {
 
   public struct State: Equatable {
-    var places: [Restaurant]
+    var places: IdentifiedArrayOf<Restaurant>
     var currentView: ViewType
     var searchText: String
     var locManager = LocationManager()
@@ -32,7 +32,7 @@ public enum ContentStore {
     case receivedResponseFromGoogle(
       Swift.Result<[Result], Error>
     )
-    case didTapFavoriteButton(Int)
+    case didTapFavoriteButton(UUID)
   }
 
   public static let reducer: Reducer<State, Action, Environment> = .combine(
@@ -79,15 +79,15 @@ public enum ContentStore {
           for result in results {
             state.places.append(Restaurant(result: result))
           }
-          state.places = restaurants
+          state.places = IdentifiedArrayOf<Restaurant>(uniqueElements: restaurants)
 
         case .failure(let error):
           print(error.localizedDescription)
         }
         return .none
 
-      case .didTapFavoriteButton(let index):
-        state.places[index].isFavorite.toggle()
+      case .didTapFavoriteButton(let id):
+        state.places[id: id]?.isFavorite.toggle()
         return .none
       }
     }
